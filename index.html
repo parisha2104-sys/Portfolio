@@ -1,1539 +1,745 @@
-<!DOCTYPE html>
-<html lang="en">
+/* ==================================================
+   LOADER
+================================================== */
 
-<head>
+window.addEventListener("load", () => {
 
-    <meta charset="UTF-8">
+    setTimeout(() => {
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        document
+            .getElementById("loader")
+            .classList
+            .add("hide");
 
-    <meta name="theme-color"
-          content="#070711">
+    }, 900);
 
-    <meta name="description"
-          content="Parisha — Artificial Intelligence & Machine Learning student, developer and technology enthusiast.">
+});
 
-    <title>Parisha | AI × Technology</title>
 
 
-    <!-- Google Fonts -->
+/* ==================================================
+   TYPING EFFECT
+================================================== */
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+const words = [
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    "AI & ML learner.",
+    "problem solver.",
+    "developer.",
+    "data explorer.",
+    "curious builder."
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
+];
 
+let wordIndex = 0;
 
-    <!-- Font Awesome -->
+let charIndex = 0;
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+let deleting = false;
 
+const typing =
+    document.querySelector(".typing");
 
-    <link rel="stylesheet"
-          href="style.css">
 
-</head>
+function typeWriter() {
 
+    const word =
+        words[wordIndex];
 
-<body>
 
+    if (!deleting) {
 
-<!-- ==================================================
-     LOADER
-================================================== -->
+        typing.textContent =
+            word.substring(
+                0,
+                charIndex + 1
+            );
 
-<div id="loader">
+        charIndex++;
 
-    <div class="loader-inner">
 
-        <div class="loader-ring"></div>
+        if (
+            charIndex ===
+            word.length
+        ) {
 
-        <div class="loader-text">
-            PARISHA<span>.</span>
-        </div>
+            deleting = true;
 
-        <p>
-            Initializing portfolio...
-        </p>
+            setTimeout(
+                typeWriter,
+                1300
+            );
 
-    </div>
+            return;
+        }
 
-</div>
+    } else {
 
+        typing.textContent =
+            word.substring(
+                0,
+                charIndex - 1
+            );
 
+        charIndex--;
 
-<!-- ==================================================
-     MOUSE GLOW
-================================================== -->
 
-<div class="cursor-glow"></div>
+        if (
+            charIndex === 0
+        ) {
 
+            deleting = false;
 
+            wordIndex =
+                (wordIndex + 1)
+                % words.length;
 
-<!-- ==================================================
-     BACKGROUND
-================================================== -->
+        }
 
-<div class="background">
+    }
 
-    <div class="gradient-orb orb-one"></div>
 
-    <div class="gradient-orb orb-two"></div>
+    setTimeout(
 
-    <div class="gradient-orb orb-three"></div>
+        typeWriter,
 
-    <div class="grid"></div>
+        deleting
+            ? 40
+            : 80
 
-    <canvas id="particles"></canvas>
+    );
 
-</div>
+}
 
 
+typeWriter();
 
-<!-- ==================================================
-     SCROLL PROGRESS
-================================================== -->
 
-<div class="scroll-progress"></div>
 
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
 
+const reveals =
+    document.querySelectorAll(".reveal");
 
-<!-- ==================================================
-     NAVBAR
-================================================== -->
 
-<header>
+const revealObserver =
+    new IntersectionObserver(
 
-    <nav class="navbar">
+        entries => {
 
+            entries.forEach(entry => {
 
-        <a href="#home"
-           class="logo">
+                if (
+                    entry.isIntersecting
+                ) {
 
-            <span>&lt;</span>
-            Parisha
-            <span>/&gt;</span>
+                    entry.target
+                        .classList
+                        .add("active");
 
-        </a>
+                }
 
+            });
 
-        <div class="nav-links">
+        },
 
-            <a href="#home">Home</a>
+        {
+            threshold: .12
+        }
 
-            <a href="#about">About</a>
+    );
 
-            <a href="#skills">Skills</a>
 
-            <a href="#projects">Projects</a>
+reveals.forEach(
+    element =>
+        revealObserver.observe(element)
+);
 
-            <a href="#education">Education</a>
 
-            <a href="#contact">Contact</a>
 
-        </div>
+/* ==================================================
+   SCROLL PROGRESS
+================================================== */
 
+window.addEventListener(
+    "scroll",
+    () => {
 
-        <a href="https://www.linkedin.com/in/parisha-79a006377"
-           target="_blank"
-           class="nav-connect">
+        const scrollTop =
+            window.scrollY;
 
-            Connect
+        const pageHeight =
+            document.documentElement
+                .scrollHeight
+            -
+            window.innerHeight;
 
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        const progress =
+            (scrollTop / pageHeight)
+            * 100;
 
-        </a>
 
+        document
+            .querySelector(".scroll-progress")
+            .style.width =
+            progress + "%";
 
-        <button class="mobile-menu">
+    }
+);
 
-            <i class="fa-solid fa-bars"></i>
 
-        </button>
 
-    </nav>
+/* ==================================================
+   CURSOR GLOW
+================================================== */
 
-</header>
+const cursorGlow =
+    document.querySelector(".cursor-glow");
 
 
+window.addEventListener(
+    "mousemove",
+    event => {
 
-<!-- ==================================================
-     HERO
-================================================== -->
+        cursorGlow.style.left =
+            event.clientX + "px";
 
-<section id="home"
-         class="hero">
+        cursorGlow.style.top =
+            event.clientY + "px";
 
+    }
+);
 
-    <!-- LEFT -->
 
-    <div class="hero-left reveal">
 
+/* ==================================================
+   MAGNETIC BUTTONS
+================================================== */
 
-        <div class="hero-status">
+const magneticButtons =
+    document.querySelectorAll(".magnetic");
 
-            <span class="status-dot"></span>
 
-            <span>
-                B.Tech AI & ML Student
-            </span>
+magneticButtons.forEach(button => {
 
-        </div>
+    button.addEventListener(
+        "mousemove",
+        event => {
 
+            const rect =
+                button.getBoundingClientRect();
 
-        <div class="hero-mini">
 
-            <span>01</span>
+            const x =
+                event.clientX
+                -
+                rect.left
+                -
+                rect.width / 2;
 
-            <span class="line"></span>
 
-            <span>WELCOME TO MY DIGITAL SPACE</span>
+            const y =
+                event.clientY
+                -
+                rect.top
+                -
+                rect.height / 2;
 
-        </div>
 
+            button.style.transform =
+                `
+                translate(
+                    ${x * .12}px,
+                    ${y * .12}px
+                )
+                `;
 
-        <h1>
+        }
+    );
 
-            Building
 
-            <span class="gradient-text">
-                ideas
-            </span>
+    button.addEventListener(
+        "mouseleave",
+        () => {
 
-            into
+            button.style.transform =
+                "translate(0,0)";
 
-            <span class="outline-text">
-                reality.
-            </span>
+        }
+    );
 
-        </h1>
+});
 
 
-        <div class="hero-role">
 
-            <span>I am a</span>
+/* ==================================================
+   PARTICLE SYSTEM
+================================================== */
 
-            <strong class="typing"></strong>
+const canvas =
+    document.getElementById(
+        "particles"
+    );
 
-            <span class="typing-cursor">|</span>
+const ctx =
+    canvas.getContext("2d");
 
-        </div>
 
+let particles = [];
 
-        <p class="hero-description">
 
-            I explore Artificial Intelligence, software development,
-            data and emerging technologies — turning what I learn
-            into practical projects and experiences.
+function resizeCanvas() {
 
-        </p>
+    canvas.width =
+        window.innerWidth;
 
+    canvas.height =
+        window.innerHeight;
 
-        <div class="hero-buttons">
+}
 
 
-            <a href="#projects"
-               class="btn btn-primary magnetic">
+resizeCanvas();
 
-                <span>
-                    Explore My Work
-                </span>
 
-                <i class="fa-solid fa-arrow-down"></i>
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
-            </a>
 
 
-            <a href="https://www.linkedin.com/in/parisha-79a006377"
-               target="_blank"
-               class="btn btn-glass magnetic">
+class Particle {
 
-                <i class="fa-brands fa-linkedin"></i>
+    constructor() {
 
-                <span>
-                    LinkedIn
-                </span>
+        this.x =
+            Math.random()
+            *
+            canvas.width;
 
-            </a>
+        this.y =
+            Math.random()
+            *
+            canvas.height;
 
-        </div>
+        this.size =
+            Math.random()
+            * 1.8
+            + .4;
 
+        this.speedX =
+            (Math.random() - .5)
+            * .25;
 
-        <div class="hero-socials">
+        this.speedY =
+            (Math.random() - .5)
+            * .25;
 
+        this.opacity =
+            Math.random()
+            * .5
+            + .1;
 
-            <a href="https://www.linkedin.com/in/parisha-79a006377"
-               target="_blank">
+    }
 
-                <i class="fa-brands fa-linkedin-in"></i>
 
-            </a>
+    update() {
 
+        this.x +=
+            this.speedX;
 
-            <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
-               target="_blank">
+        this.y +=
+            this.speedY;
 
-                <i class="fa-brands fa-microsoft"></i>
 
-            </a>
+        if (
+            this.x < 0 ||
+            this.x > canvas.width
+        ) {
 
+            this.speedX *= -1;
 
-            <span class="social-line"></span>
+        }
 
 
-            <span>
-                Always learning.
-            </span>
+        if (
+            this.y < 0 ||
+            this.y > canvas.height
+        ) {
 
-        </div>
+            this.speedY *= -1;
 
+        }
 
-    </div>
+    }
 
 
+    draw() {
 
-    <!-- RIGHT HERO VISUAL -->
+        ctx.beginPath();
 
-    <div class="hero-right reveal">
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
 
+        ctx.fillStyle =
+            `rgba(167,139,250,${this.opacity})`;
 
-        <div class="hero-aura"></div>
+        ctx.fill();
 
+    }
 
-        <!-- MAIN GLASS CARD -->
+}
 
-        <div class="ai-card">
 
+function createParticles() {
 
-            <div class="card-top">
+    particles = [];
 
-                <div class="window-dots">
+    const amount =
+        window.innerWidth < 700
+            ? 45
+            : 90;
 
-                    <span></span>
-                    <span></span>
-                    <span></span>
 
-                </div>
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
 
+        particles.push(
+            new Particle()
+        );
 
-                <div class="card-title">
+    }
 
-                    <i class="fa-solid fa-sparkles"></i>
+}
 
-                    parisha.ai
 
-                </div>
+createParticles();
 
-            </div>
 
 
-            <div class="ai-core">
+function animateParticles() {
 
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
-                <div class="core-ring ring-one"></div>
 
-                <div class="core-ring ring-two"></div>
+    particles.forEach(
+        particle => {
 
-                <div class="core-ring ring-three"></div>
+            particle.update();
 
+            particle.draw();
 
-                <div class="core-center">
+        }
+    );
 
-                    <i class="fa-solid fa-brain"></i>
 
-                </div>
+    requestAnimationFrame(
+        animateParticles
+    );
 
+}
 
-                <div class="orbit orbit-one">
 
-                    <span>
-                        AI
-                    </span>
+animateParticles();
 
-                </div>
 
 
-                <div class="orbit orbit-two">
+/* ==================================================
+   HERO CARD 3D TILT
+================================================== */
 
-                    <span>
-                        ML
-                    </span>
+const aiCard =
+    document.querySelector(".ai-card");
 
-                </div>
 
+if (aiCard) {
 
-                <div class="orbit orbit-three">
+    aiCard.addEventListener(
+        "mousemove",
+        event => {
 
-                    <span>
-                        DATA
-                    </span>
+            const rect =
+                aiCard.getBoundingClientRect();
 
-                </div>
 
+            const x =
+                event.clientX
+                -
+                rect.left;
 
-            </div>
 
+            const y =
+                event.clientY
+                -
+                rect.top;
 
-            <div class="code-lines">
 
+            const rotateX =
+                ((y - rect.height / 2)
+                /
+                (rect.height / 2))
+                * -5;
 
-                <div>
 
-                    <span class="purple">
-                        const
-                    </span>
+            const rotateY =
+                ((x - rect.width / 2)
+                /
+                (rect.width / 2))
+                * 6;
 
-                    <span class="white">
-                        developer
-                    </span>
 
-                    <span class="pink">
-                        =
-                    </span>
+            aiCard.style.transform =
+                `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)
+                `;
 
-                    <span class="green">
-                        {
-                    </span>
+        }
+    );
 
-                </div>
 
+    aiCard.addEventListener(
+        "mouseleave",
+        () => {
 
-                <div class="indent">
+            aiCard.style.transform =
+                `
+                perspective(1000px)
+                rotateY(-6deg)
+                rotateX(2deg)
+                `;
 
-                    <span class="blue">
-                        name
-                    </span>
+        }
+    );
 
-                    <span>
-                        :
-                    </span>
+}
 
-                    <span class="green">
-                        "Parisha"
-                    </span>
 
-                </div>
 
+/* ==================================================
+   SKILL CARD TILT
+================================================== */
 
-                <div class="indent">
+const skillCards =
+    document.querySelectorAll(
+        ".skill-card"
+    );
 
-                    <span class="blue">
-                        field
-                    </span>
 
-                    <span>
-                        :
-                    </span>
+skillCards.forEach(card => {
 
-                    <span class="green">
-                        "AI & ML"
-                    </span>
+    card.addEventListener(
+        "mousemove",
+        event => {
 
-                </div>
+            const rect =
+                card.getBoundingClientRect();
 
 
-                <div class="indent">
+            const x =
+                event.clientX
+                -
+                rect.left;
 
-                    <span class="blue">
-                        mindset
-                    </span>
 
-                    <span>
-                        :
-                    </span>
+            const y =
+                event.clientY
+                -
+                rect.top;
 
-                    <span class="green">
-                        "Build"
-                    </span>
 
-                </div>
+            const rotateX =
+                ((y - rect.height / 2)
+                /
+                rect.height)
+                * -5;
 
 
-                <div>
+            const rotateY =
+                ((x - rect.width / 2)
+                /
+                rect.width)
+                * 5;
 
-                    <span class="green">
-                        };
-                    </span>
 
-                </div>
+            card.style.transform =
+                `
+                perspective(700px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)
+                `;
 
+        }
+    );
 
-            </div>
 
+    card.addEventListener(
+        "mouseleave",
+        () => {
 
-            <div class="card-bottom">
+            card.style.transform =
+                "translateY(0)";
 
+        }
+    );
 
-                <div>
+});
 
-                    <span class="pulse-dot"></span>
 
-                    <span>
-                        Currently learning
-                    </span>
 
-                </div>
+/* ==================================================
+   PROJECT CARD TILT
+================================================== */
 
+const projectCards =
+    document.querySelectorAll(
+        ".project-card"
+    );
 
-                <span class="card-arrow">
 
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+projectCards.forEach(card => {
 
-                </span>
+    card.addEventListener(
+        "mousemove",
+        event => {
 
-            </div>
+            const rect =
+                card.getBoundingClientRect();
 
 
-        </div>
+            const x =
+                event.clientX
+                -
+                rect.left;
 
 
+            const y =
+                event.clientY
+                -
+                rect.top;
 
-        <!-- FLOATING CARDS -->
 
+            const rotateX =
+                ((y - rect.height / 2)
+                /
+                rect.height)
+                * -2;
 
-        <div class="floating-tech tech-one">
 
-            <i class="fa-brands fa-python"></i>
+            const rotateY =
+                ((x - rect.width / 2)
+                /
+                rect.width)
+                * 2;
 
-            <div>
 
-                <strong>
-                    Python
-                </strong>
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-10px)
+                `;
 
-                <small>
-                    Building
-                </small>
+        }
+    );
 
-            </div>
 
-        </div>
+    card.addEventListener(
+        "mouseleave",
+        () => {
 
+            card.style.transform =
+                "translateY(0)";
 
-        <div class="floating-tech tech-two">
+        }
+    );
 
-            <i class="fa-solid fa-brain"></i>
+});
 
-            <div>
 
-                <strong>
-                    AI / ML
-                </strong>
 
-                <small>
-                    Exploring
-                </small>
+/* ==================================================
+   MOBILE MENU
+================================================== */
 
-            </div>
+const mobileMenu =
+    document.querySelector(
+        ".mobile-menu"
+    );
 
-        </div>
+const navLinks =
+    document.querySelector(
+        ".nav-links"
+    );
 
 
-        <div class="floating-tech tech-three">
+mobileMenu.addEventListener(
+    "click",
+    () => {
 
-            <i class="fa-solid fa-database"></i>
+        navLinks.classList.toggle(
+            "mobile-open"
+        );
 
-            <div>
+    }
+);
 
-                <strong>
-                    SQL
-                </strong>
 
-                <small>
-                    Learning
-                </small>
 
-            </div>
+/* ==================================================
+   SMOOTH NAV LINKS
+================================================== */
 
-        </div>
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
 
+        link.addEventListener(
+            "click",
+            event => {
 
-    </div>
+                const target =
+                    document.querySelector(
+                        link.getAttribute(
+                            "href"
+                        )
+                    );
 
-</section>
 
+                if (target) {
 
+                    event.preventDefault();
 
-<!-- ==================================================
-     MARQUEE
-================================================== -->
+                    target.scrollIntoView({
+                        behavior:
+                            "smooth"
+                    });
 
-<div class="marquee">
+                }
 
-    <div class="marquee-track">
+            }
+        );
 
-        <span>ARTIFICIAL INTELLIGENCE</span>
-
-        <i class="fa-solid fa-star"></i>
-
-        <span>MACHINE LEARNING</span>
-
-        <i class="fa-solid fa-star"></i>
-
-        <span>DATA</span>
-
-        <i class="fa-solid fa-star"></i>
-
-        <span>SOFTWARE</span>
-
-        <i class="fa-solid fa-star"></i>
-
-        <span>PROBLEM SOLVING</span>
-
-        <i class="fa-solid fa-star"></i>
-
-        <span>ARTIFICIAL INTELLIGENCE</span>
-
-        <i class="fa-solid fa-star"></i>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==================================================
-     QUICK STATS
-================================================== -->
-
-<section class="stats reveal">
-
-
-    <div class="stat-card">
-
-        <span class="stat-number">
-            03+
-        </span>
-
-        <span class="stat-label">
-            Projects
-        </span>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <span class="stat-number">
-            AI
-        </span>
-
-        <span class="stat-label">
-            Main Focus
-        </span>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <span class="stat-number">
-            SQL
-        </span>
-
-        <span class="stat-label">
-            Database
-        </span>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <span class="stat-number">
-            ∞
-        </span>
-
-        <span class="stat-label">
-            Curiosity
-        </span>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     ABOUT
-================================================== -->
-
-<section id="about"
-         class="section">
-
-
-    <div class="section-label reveal">
-
-        <span>01</span>
-
-        ABOUT ME
-
-    </div>
-
-
-    <div class="about-grid">
-
-
-        <div class="about-heading reveal">
-
-            <h2>
-
-                Curious enough
-
-                <span>
-                    to explore.
-                </span>
-
-                Driven enough
-
-                <span>
-                    to build.
-                </span>
-
-            </h2>
-
-        </div>
-
-
-        <div class="about-text reveal">
-
-            <p>
-
-                I'm a B.Tech Artificial Intelligence & Machine Learning
-                student interested in understanding how technology can
-                turn ideas into useful solutions.
-
-            </p>
-
-
-            <p>
-
-                I'm currently strengthening my foundations in Python,
-                C++, SQL, Data Structures & Algorithms, AI/ML and
-                software development through hands-on learning.
-
-            </p>
-
-
-            <p>
-
-                I enjoy building projects, experimenting with technology
-                and continuously learning something new.
-
-            </p>
-
-
-            <div class="about-signature">
-
-                <span>
-                    Let's build.
-                </span>
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     SKILLS
-================================================== -->
-
-<section id="skills"
-         class="section skills-section">
-
-
-    <div class="section-label reveal">
-
-        <span>02</span>
-
-        TECH STACK
-
-    </div>
-
-
-    <div class="section-title-row reveal">
-
-        <h2>
-            Tools I use to
-            <span>create.</span>
-        </h2>
-
-        <p>
-            Growing my toolkit one project at a time.
-        </p>
-
-    </div>
-
-
-    <div class="skills-grid">
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon python">
-                <i class="fa-brands fa-python"></i>
-            </div>
-
-            <h3>
-                Python
-            </h3>
-
-            <p>
-                Programming • Data • AI
-            </p>
-
-            <span class="skill-number">
-                01
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon cpp">
-                <i class="fa-solid fa-code"></i>
-            </div>
-
-            <h3>
-                C++
-            </h3>
-
-            <p>
-                OOP • DSA • Logic
-            </p>
-
-            <span class="skill-number">
-                02
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon sql">
-                <i class="fa-solid fa-database"></i>
-            </div>
-
-            <h3>
-                SQL
-            </h3>
-
-            <p>
-                MySQL • DBMS
-            </p>
-
-            <span class="skill-number">
-                03
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon ai">
-                <i class="fa-solid fa-brain"></i>
-            </div>
-
-            <h3>
-                AI / ML
-            </h3>
-
-            <p>
-                Fundamentals • Projects
-            </p>
-
-            <span class="skill-number">
-                04
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon data">
-                <i class="fa-solid fa-chart-simple"></i>
-            </div>
-
-            <h3>
-                Data Analysis
-            </h3>
-
-            <p>
-                Visualization • Forecasting
-            </p>
-
-            <span class="skill-number">
-                05
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon git">
-                <i class="fa-brands fa-github"></i>
-            </div>
-
-            <h3>
-                Git & GitHub
-            </h3>
-
-            <p>
-                Version Control
-            </p>
-
-            <span class="skill-number">
-                06
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon streamlit">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-
-            <h3>
-                Streamlit
-            </h3>
-
-            <p>
-                Interactive Apps
-            </p>
-
-            <span class="skill-number">
-                07
-            </span>
-
-        </div>
-
-
-        <div class="skill-card reveal">
-
-            <div class="skill-icon java">
-                <i class="fa-brands fa-java"></i>
-            </div>
-
-            <h3>
-                Java
-            </h3>
-
-            <p>
-                Programming • OOP
-            </p>
-
-            <span class="skill-number">
-                08
-            </span>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     PROJECTS
-================================================== -->
-
-<section id="projects"
-         class="section">
-
-
-    <div class="section-label reveal">
-
-        <span>03</span>
-
-        SELECTED WORK
-
-    </div>
-
-
-    <div class="section-title-row reveal">
-
-        <h2>
-            Things I've
-            <span>built.</span>
-        </h2>
-
-        <p>
-            From data dashboards to database systems.
-        </p>
-
-    </div>
-
-
-    <div class="projects-grid">
-
-
-        <!-- PROJECT 1 -->
-
-        <article class="project-card project-large reveal">
-
-
-            <div class="project-number-big">
-                01
-            </div>
-
-
-            <div class="project-icon-big">
-
-                <i class="fa-solid fa-chart-line"></i>
-
-            </div>
-
-
-            <div class="project-content">
-
-                <span class="project-category">
-                    DATA • AI • FORECASTING
-                </span>
-
-
-                <h3>
-                    Public Transit
-                    <span>
-                        Ridership Analytics
-                    </span>
-                </h3>
-
-
-                <p>
-
-                    An interactive analytics and forecasting platform
-                    designed to explore public transit ridership,
-                    passenger patterns, peak periods, revenue and
-                    future demand.
-
-                </p>
-
-
-                <div class="project-tags">
-
-                    <span>Python</span>
-
-                    <span>Streamlit</span>
-
-                    <span>Data Analysis</span>
-
-                    <span>Forecasting</span>
-
-                </div>
-
-            </div>
-
-
-            <div class="project-glow"></div>
-
-        </article>
-
-
-
-        <!-- PROJECT 2 -->
-
-        <article class="project-card reveal">
-
-
-            <div class="project-number-big">
-                02
-            </div>
-
-
-            <div class="project-icon-big">
-
-                <i class="fa-solid fa-pills"></i>
-
-            </div>
-
-
-            <div class="project-content">
-
-                <span class="project-category">
-                    DATABASE • SQL
-                </span>
-
-
-                <h3>
-                    Pharmacy
-                    <span>
-                        Management System
-                    </span>
-                </h3>
-
-
-                <p>
-
-                    A structured database management system for
-                    organizing medicines, categories, suppliers,
-                    customers and sales.
-
-                </p>
-
-
-                <div class="project-tags">
-
-                    <span>MySQL</span>
-
-                    <span>SQL</span>
-
-                    <span>DBMS</span>
-
-                    <span>CRUD</span>
-
-                </div>
-
-            </div>
-
-
-            <div class="project-glow"></div>
-
-        </article>
-
-
-
-        <!-- PROJECT 3 -->
-
-        <article class="project-card reveal">
-
-
-            <div class="project-number-big">
-                03
-            </div>
-
-
-            <div class="project-icon-big">
-
-                <i class="fa-solid fa-code"></i>
-
-            </div>
-
-
-            <div class="project-content">
-
-                <span class="project-category">
-                    PROGRAMMING • DSA
-                </span>
-
-
-                <h3>
-                    DSA &
-                    <span>
-                        Problem Solving
-                    </span>
-                </h3>
-
-
-                <p>
-
-                    A growing collection of algorithms and
-                    Data Structures implementations focused on
-                    strengthening programming fundamentals.
-
-                </p>
-
-
-                <div class="project-tags">
-
-                    <span>C++</span>
-
-                    <span>DSA</span>
-
-                    <span>Algorithms</span>
-
-                    <span>LeetCode</span>
-
-                </div>
-
-            </div>
-
-
-            <div class="project-glow"></div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     LEARNING BANNER
-================================================== -->
-
-<section class="learning-banner">
-
-
-    <div class="learning-orb"></div>
-
-
-    <div class="learning-content reveal">
-
-
-        <span class="tiny-label">
-            CURRENTLY LEARNING
-        </span>
-
-
-        <h2>
-
-            Learning isn't a phase.
-
-            <span>
-                It's the process.
-            </span>
-
-        </h2>
-
-
-        <p>
-
-            Currently exploring AI/ML, Data Structures,
-            Python, cloud technologies and software development
-            through projects and continuous practice.
-
-        </p>
-
-
-        <div class="learning-pills">
-
-            <span>AI / ML</span>
-
-            <span>Python</span>
-
-            <span>DSA</span>
-
-            <span>Cloud</span>
-
-            <span>Data</span>
-
-            <span>Software</span>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     EDUCATION
-================================================== -->
-
-<section id="education"
-         class="section">
-
-
-    <div class="section-label reveal">
-
-        <span>04</span>
-
-        EDUCATION
-
-    </div>
-
-
-    <div class="education-card reveal">
-
-
-        <div class="education-year">
-
-            2025
-
-            <span>
-                —
-            </span>
-
-            2029
-
-        </div>
-
-
-        <div class="education-line"></div>
-
-
-        <div class="education-info">
-
-            <span class="education-type">
-                BACHELOR'S DEGREE
-            </span>
-
-
-            <h2>
-
-                B.Tech —
-                <span>
-                    Artificial Intelligence
-                    & Machine Learning
-                </span>
-
-            </h2>
-
-
-            <h3>
-                Chandigarh University
-            </h3>
-
-
-            <p>
-
-                Exploring programming, mathematics, databases,
-                Data Structures & Algorithms, Artificial Intelligence,
-                Machine Learning and software development.
-
-            </p>
-
-        </div>
-
-
-        <div class="education-icon">
-
-            <i class="fa-solid fa-graduation-cap"></i>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     MICROSOFT LEARN
-================================================== -->
-
-<section class="microsoft-section">
-
-
-    <div class="microsoft-card reveal">
-
-
-        <div class="ms-icon">
-
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-
-        </div>
-
-
-        <div class="ms-content">
-
-            <span class="tiny-label">
-                LEARNING PROFILE
-            </span>
-
-
-            <h2>
-                Microsoft Learn
-            </h2>
-
-
-            <p>
-
-                Building technical knowledge through
-                Microsoft Learn and exploring modern
-                technology ecosystems.
-
-            </p>
-
-
-            <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
-               target="_blank"
-               class="btn btn-primary">
-
-                View My Profile
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
-
-        </div>
-
-
-        <div class="ms-decoration">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     CONTACT
-================================================== -->
-
-<section id="contact"
-         class="contact-section">
-
-
-    <div class="contact-glow"></div>
-
-
-    <div class="contact-content reveal">
-
-
-        <span class="tiny-label">
-            05 — LET'S CONNECT
-        </span>
-
-
-        <h2>
-
-            Have an idea?
-
-            <span>
-                Let's build.
-            </span>
-
-        </h2>
-
-
-        <p>
-
-            I'm always open to learning, collaborating,
-            building projects and connecting with people
-            who are passionate about technology.
-
-        </p>
-
-
-        <div class="contact-buttons">
-
-
-            <a href="https://www.linkedin.com/in/parisha-79a006377"
-               target="_blank"
-               class="btn btn-primary magnetic">
-
-                <i class="fa-brands fa-linkedin"></i>
-
-                Connect on LinkedIn
-
-            </a>
-
-
-            <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
-               target="_blank"
-               class="btn btn-glass magnetic">
-
-                <i class="fa-brands fa-microsoft"></i>
-
-                Microsoft Learn
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
-<footer>
-
-
-    <div class="footer-main">
-
-
-        <a href="#home"
-           class="logo">
-
-            <span>&lt;</span>
-            Parisha
-            <span>/&gt;</span>
-
-        </a>
-
-
-        <p>
-            Built with curiosity & code.
-        </p>
-
-
-        <div class="footer-links">
-
-
-            <a href="https://www.linkedin.com/in/parisha-79a006377"
-               target="_blank">
-
-                <i class="fa-brands fa-linkedin-in"></i>
-
-            </a>
-
-
-            <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
-               target="_blank">
-
-                <i class="fa-brands fa-microsoft"></i>
-
-            </a>
-
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 Parisha
-        </span>
-
-        <span>
-            Designed & built from scratch.
-        </span>
-
-    </div>
-
-
-</footer>
-
-
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
+    });
