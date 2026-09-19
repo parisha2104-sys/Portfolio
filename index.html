@@ -1,134 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Parisha | AI & ML Portfolio</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#070711">
 
     <meta name="description"
-          content="Parisha — B.Tech Artificial Intelligence & Machine Learning student exploring AI, data, software development and technology.">
+          content="Parisha — Artificial Intelligence & Machine Learning student, developer and technology enthusiast.">
+
+    <title>Parisha | AI × Technology</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
 
     <!-- Font Awesome -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <link rel="stylesheet"
+          href="style.css">
 
-    <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
 
-    <div class="grid-background"></div>
+<!-- ==================================================
+     LOADER
+================================================== -->
+
+<div id="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-ring"></div>
+
+        <div class="loader-text">
+            PARISHA<span>.</span>
+        </div>
+
+        <p>
+            Initializing portfolio...
+        </p>
+
+    </div>
+
 </div>
 
 
-<!-- NAVBAR -->
+
+<!-- ==================================================
+     MOUSE GLOW
+================================================== -->
+
+<div class="cursor-glow"></div>
+
+
+
+<!-- ==================================================
+     BACKGROUND
+================================================== -->
+
+<div class="background">
+
+    <div class="gradient-orb orb-one"></div>
+
+    <div class="gradient-orb orb-two"></div>
+
+    <div class="gradient-orb orb-three"></div>
+
+    <div class="grid"></div>
+
+    <canvas id="particles"></canvas>
+
+</div>
+
+
+
+<!-- ==================================================
+     SCROLL PROGRESS
+================================================== -->
+
+<div class="scroll-progress"></div>
+
+
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
 <header>
 
     <nav class="navbar">
 
-        <div class="logo">
-            <span>&lt;</span>Parisha<span>/&gt;</span>
-        </div>
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <a href="#home"
+           class="logo">
 
-        <a class="nav-btn"
-           href="https://www.linkedin.com/in/parisha-79a006377"
-           target="_blank">
-
-            Let's Connect
+            <span>&lt;</span>
+            Parisha
+            <span>/&gt;</span>
 
         </a>
+
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="#skills">Skills</a>
+
+            <a href="#projects">Projects</a>
+
+            <a href="#education">Education</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <a href="https://www.linkedin.com/in/parisha-79a006377"
+           target="_blank"
+           class="nav-connect">
+
+            Connect
+
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+        </a>
+
+
+        <button class="mobile-menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
 
     </nav>
 
 </header>
 
 
-<!-- HERO -->
-<section id="home" class="hero">
 
-    <div class="hero-content reveal">
+<!-- ==================================================
+     HERO
+================================================== -->
 
-        <div class="availability">
-            <span class="live-dot"></span>
-            Open to learning & collaboration
+<section id="home"
+         class="hero">
+
+
+    <!-- LEFT -->
+
+    <div class="hero-left reveal">
+
+
+        <div class="hero-status">
+
+            <span class="status-dot"></span>
+
+            <span>
+                B.Tech AI & ML Student
+            </span>
+
         </div>
 
-        <p class="small-intro">
-            B.Tech Artificial Intelligence & Machine Learning
-        </p>
+
+        <div class="hero-mini">
+
+            <span>01</span>
+
+            <span class="line"></span>
+
+            <span>WELCOME TO MY DIGITAL SPACE</span>
+
+        </div>
+
 
         <h1>
-            Hi, I'm
-            <span>Parisha.</span>
+
+            Building
+
+            <span class="gradient-text">
+                ideas
+            </span>
+
+            into
+
+            <span class="outline-text">
+                reality.
+            </span>
+
         </h1>
 
-        <h2>
-            I build
-            <span class="typing"></span>
-        </h2>
 
-        <p class="hero-text">
+        <div class="hero-role">
 
-            An Artificial Intelligence & Machine Learning student
-            exploring AI, software development, data and emerging
-            technologies through hands-on projects.
+            <span>I am a</span>
+
+            <strong class="typing"></strong>
+
+            <span class="typing-cursor">|</span>
+
+        </div>
+
+
+        <p class="hero-description">
+
+            I explore Artificial Intelligence, software development,
+            data and emerging technologies — turning what I learn
+            into practical projects and experiences.
 
         </p>
 
 
         <div class="hero-buttons">
 
-            <a href="#projects" class="primary-btn">
 
-                Explore My Work
+            <a href="#projects"
+               class="btn btn-primary magnetic">
 
-                <i class="fa-solid fa-arrow-right"></i>
+                <span>
+                    Explore My Work
+                </span>
+
+                <i class="fa-solid fa-arrow-down"></i>
 
             </a>
 
 
             <a href="https://www.linkedin.com/in/parisha-79a006377"
                target="_blank"
-               class="secondary-btn">
+               class="btn btn-glass magnetic">
 
                 <i class="fa-brands fa-linkedin"></i>
 
-                LinkedIn
+                <span>
+                    LinkedIn
+                </span>
 
             </a>
 
         </div>
 
 
-        <div class="socials">
+        <div class="hero-socials">
+
 
             <a href="https://www.linkedin.com/in/parisha-79a006377"
                target="_blank">
 
-                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
 
             </a>
 
@@ -141,96 +285,275 @@
             </a>
 
 
-            <!-- GitHub link can be added later -->
+            <span class="social-line"></span>
+
+
+            <span>
+                Always learning.
+            </span>
 
         </div>
+
 
     </div>
 
 
-    <!-- HERO CODE WINDOW -->
 
-    <div class="hero-visual reveal">
+    <!-- RIGHT HERO VISUAL -->
 
-        <div class="code-window">
+    <div class="hero-right reveal">
 
-            <div class="window-top">
 
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="hero-aura"></div>
+
+
+        <!-- MAIN GLASS CARD -->
+
+        <div class="ai-card">
+
+
+            <div class="card-top">
+
+                <div class="window-dots">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <div class="card-title">
+
+                    <i class="fa-solid fa-sparkles"></i>
+
+                    parisha.ai
+
+                </div>
 
             </div>
 
 
-            <div class="code-content">
+            <div class="ai-core">
 
-                <p>
-                    <span class="purple">const</span>
-                    developer = {
-                </p>
 
-                <p class="indent">
-                    name:
-                    <span class="green">"Parisha"</span>,
-                </p>
+                <div class="core-ring ring-one"></div>
 
-                <p class="indent">
-                    field:
-                    <span class="green">"AI & ML"</span>,
-                </p>
+                <div class="core-ring ring-two"></div>
 
-                <p class="indent">
-                    skills:
-                    <span class="green">
-                        ["Python", "C++", "SQL"]
-                    </span>,
-                </p>
+                <div class="core-ring ring-three"></div>
 
-                <p class="indent">
-                    passion:
-                    <span class="green">
-                        "Building"
-                    </span>
-                </p>
 
-                <p>};</p>
+                <div class="core-center">
 
-                <p class="cursor-line">
+                    <i class="fa-solid fa-brain"></i>
 
-                    <span class="purple">while</span>
-                    (learning)
-                    {
+                </div>
 
-                    <span class="green">
-                        grow();
+
+                <div class="orbit orbit-one">
+
+                    <span>
+                        AI
                     </span>
 
-                    }
+                </div>
 
-                </p>
+
+                <div class="orbit orbit-two">
+
+                    <span>
+                        ML
+                    </span>
+
+                </div>
+
+
+                <div class="orbit orbit-three">
+
+                    <span>
+                        DATA
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="code-lines">
+
+
+                <div>
+
+                    <span class="purple">
+                        const
+                    </span>
+
+                    <span class="white">
+                        developer
+                    </span>
+
+                    <span class="pink">
+                        =
+                    </span>
+
+                    <span class="green">
+                        {
+                    </span>
+
+                </div>
+
+
+                <div class="indent">
+
+                    <span class="blue">
+                        name
+                    </span>
+
+                    <span>
+                        :
+                    </span>
+
+                    <span class="green">
+                        "Parisha"
+                    </span>
+
+                </div>
+
+
+                <div class="indent">
+
+                    <span class="blue">
+                        field
+                    </span>
+
+                    <span>
+                        :
+                    </span>
+
+                    <span class="green">
+                        "AI & ML"
+                    </span>
+
+                </div>
+
+
+                <div class="indent">
+
+                    <span class="blue">
+                        mindset
+                    </span>
+
+                    <span>
+                        :
+                    </span>
+
+                    <span class="green">
+                        "Build"
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="green">
+                        };
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card-bottom">
+
+
+                <div>
+
+                    <span class="pulse-dot"></span>
+
+                    <span>
+                        Currently learning
+                    </span>
+
+                </div>
+
+
+                <span class="card-arrow">
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FLOATING CARDS -->
+
+
+        <div class="floating-tech tech-one">
+
+            <i class="fa-brands fa-python"></i>
+
+            <div>
+
+                <strong>
+                    Python
+                </strong>
+
+                <small>
+                    Building
+                </small>
 
             </div>
 
         </div>
 
 
-        <div class="floating-card card-one">
+        <div class="floating-tech tech-two">
 
             <i class="fa-solid fa-brain"></i>
 
-            AI / ML
+            <div>
+
+                <strong>
+                    AI / ML
+                </strong>
+
+                <small>
+                    Exploring
+                </small>
+
+            </div>
 
         </div>
 
 
-        <div class="floating-card card-two">
+        <div class="floating-tech tech-three">
 
-            <i class="fa-solid fa-code"></i>
+            <i class="fa-solid fa-database"></i>
 
-            Build • Learn • Create
+            <div>
+
+                <strong>
+                    SQL
+                </strong>
+
+                <small>
+                    Learning
+                </small>
+
+            </div>
 
         </div>
+
 
     </div>
 
@@ -238,58 +561,120 @@
 
 
 
-<!-- STATS -->
+<!-- ==================================================
+     MARQUEE
+================================================== -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>ARTIFICIAL INTELLIGENCE</span>
+
+        <i class="fa-solid fa-star"></i>
+
+        <span>MACHINE LEARNING</span>
+
+        <i class="fa-solid fa-star"></i>
+
+        <span>DATA</span>
+
+        <i class="fa-solid fa-star"></i>
+
+        <span>SOFTWARE</span>
+
+        <i class="fa-solid fa-star"></i>
+
+        <span>PROBLEM SOLVING</span>
+
+        <i class="fa-solid fa-star"></i>
+
+        <span>ARTIFICIAL INTELLIGENCE</span>
+
+        <i class="fa-solid fa-star"></i>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     QUICK STATS
+================================================== -->
 
 <section class="stats reveal">
 
-    <div class="stat">
 
-        <h3>3+</h3>
+    <div class="stat-card">
 
-        <p>Projects</p>
+        <span class="stat-number">
+            03+
+        </span>
 
-    </div>
-
-
-    <div class="stat">
-
-        <h3>18+</h3>
-
-        <p>Microsoft Learn Badges</p>
+        <span class="stat-label">
+            Projects
+        </span>
 
     </div>
 
 
-    <div class="stat">
+    <div class="stat-card">
 
-        <h3>5</h3>
+        <span class="stat-number">
+            AI
+        </span>
 
-        <p>Microsoft Learn Trophies</p>
+        <span class="stat-label">
+            Main Focus
+        </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-number">
+            SQL
+        </span>
+
+        <span class="stat-label">
+            Database
+        </span>
 
     </div>
 
 
-    <div class="stat">
+    <div class="stat-card">
 
-        <h3>∞</h3>
+        <span class="stat-number">
+            ∞
+        </span>
 
-        <p>Curiosity</p>
+        <span class="stat-label">
+            Curiosity
+        </span>
 
     </div>
+
 
 </section>
 
 
 
-<!-- ABOUT -->
+<!-- ==================================================
+     ABOUT
+================================================== -->
 
-<section id="about" class="section">
+<section id="about"
+         class="section">
 
-    <div class="section-heading reveal">
+
+    <div class="section-label reveal">
 
         <span>01</span>
 
-        <h2>About Me</h2>
+        ABOUT ME
 
     </div>
 
@@ -297,100 +682,103 @@
     <div class="about-grid">
 
 
-        <div class="about-text reveal">
+        <div class="about-heading reveal">
 
-            <h3>
+            <h2>
 
-                Curious mind.
-                <span>Builder mindset.</span>
+                Curious enough
 
-            </h3>
+                <span>
+                    to explore.
+                </span>
 
+                Driven enough
 
-            <p>
+                <span>
+                    to build.
+                </span>
 
-                I'm a B.Tech Artificial Intelligence & Machine Learning
-                student with a strong interest in AI, software development,
-                data and emerging technologies.
-
-            </p>
-
-
-            <p>
-
-                I enjoy turning concepts into practical projects,
-                experimenting with new technologies and continuously
-                improving my problem-solving skills.
-
-            </p>
-
-
-            <p>
-
-                Currently, I'm strengthening my foundations in programming,
-                Data Structures & Algorithms, databases and AI/ML while
-                building projects that solve real-world problems.
-
-            </p>
+            </h2>
 
         </div>
 
 
+        <div class="about-text reveal">
 
-        <div class="about-card reveal">
+            <p>
 
-            <div class="about-icon">
+                I'm a B.Tech Artificial Intelligence & Machine Learning
+                student interested in understanding how technology can
+                turn ideas into useful solutions.
 
-                <i class="fa-solid fa-laptop-code"></i>
-
-            </div>
-
-
-            <h3>Currently Exploring</h3>
+            </p>
 
 
-            <div class="explore-list">
+            <p>
 
-                <span>Artificial Intelligence</span>
+                I'm currently strengthening my foundations in Python,
+                C++, SQL, Data Structures & Algorithms, AI/ML and
+                software development through hands-on learning.
 
-                <span>Machine Learning</span>
+            </p>
 
-                <span>Data Analytics</span>
 
-                <span>Software Development</span>
+            <p>
 
-                <span>Cloud Technologies</span>
+                I enjoy building projects, experimenting with technology
+                and continuously learning something new.
 
-                <span>DSA & Problem Solving</span>
+            </p>
+
+
+            <div class="about-signature">
+
+                <span>
+                    Let's build.
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
 
             </div>
 
         </div>
 
     </div>
+
 
 </section>
 
 
 
-<!-- SKILLS -->
+<!-- ==================================================
+     SKILLS
+================================================== -->
 
-<section id="skills" class="section">
+<section id="skills"
+         class="section skills-section">
 
-    <div class="section-heading reveal">
+
+    <div class="section-label reveal">
 
         <span>02</span>
 
-        <h2>Skills & Technologies</h2>
+        TECH STACK
 
     </div>
 
 
-    <p class="section-subtitle reveal">
+    <div class="section-title-row reveal">
 
-        Technologies I'm learning and working with.
+        <h2>
+            Tools I use to
+            <span>create.</span>
+        </h2>
 
-    </p>
+        <p>
+            Growing my toolkit one project at a time.
+        </p>
+
+    </div>
 
 
     <div class="skills-grid">
@@ -398,106 +786,171 @@
 
         <div class="skill-card reveal">
 
-            <i class="fa-brands fa-python"></i>
+            <div class="skill-icon python">
+                <i class="fa-brands fa-python"></i>
+            </div>
 
-            <h3>Python</h3>
+            <h3>
+                Python
+            </h3>
 
             <p>
-                Programming • Data • AI/ML
+                Programming • Data • AI
             </p>
+
+            <span class="skill-number">
+                01
+            </span>
 
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-solid fa-code"></i>
+            <div class="skill-icon cpp">
+                <i class="fa-solid fa-code"></i>
+            </div>
 
-            <h3>C++</h3>
+            <h3>
+                C++
+            </h3>
 
             <p>
-                OOP • DSA • Problem Solving
+                OOP • DSA • Logic
             </p>
+
+            <span class="skill-number">
+                02
+            </span>
 
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-solid fa-database"></i>
+            <div class="skill-icon sql">
+                <i class="fa-solid fa-database"></i>
+            </div>
 
-            <h3>SQL</h3>
+            <h3>
+                SQL
+            </h3>
 
             <p>
-                MySQL • DBMS • Queries
+                MySQL • DBMS
             </p>
+
+            <span class="skill-number">
+                03
+            </span>
 
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-solid fa-brain"></i>
+            <div class="skill-icon ai">
+                <i class="fa-solid fa-brain"></i>
+            </div>
 
-            <h3>AI / ML</h3>
+            <h3>
+                AI / ML
+            </h3>
 
             <p>
                 Fundamentals • Projects
             </p>
 
+            <span class="skill-number">
+                04
+            </span>
+
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-solid fa-chart-line"></i>
+            <div class="skill-icon data">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
 
-            <h3>Data Analysis</h3>
+            <h3>
+                Data Analysis
+            </h3>
 
             <p>
                 Visualization • Forecasting
             </p>
 
+            <span class="skill-number">
+                05
+            </span>
+
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-brands fa-git-alt"></i>
+            <div class="skill-icon git">
+                <i class="fa-brands fa-github"></i>
+            </div>
 
-            <h3>Git & GitHub</h3>
+            <h3>
+                Git & GitHub
+            </h3>
 
             <p>
-                Version Control • Projects
+                Version Control
             </p>
+
+            <span class="skill-number">
+                06
+            </span>
 
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-solid fa-layer-group"></i>
+            <div class="skill-icon streamlit">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
 
-            <h3>Streamlit</h3>
+            <h3>
+                Streamlit
+            </h3>
 
             <p>
-                Interactive Data Apps
+                Interactive Apps
             </p>
+
+            <span class="skill-number">
+                07
+            </span>
 
         </div>
 
 
         <div class="skill-card reveal">
 
-            <i class="fa-brands fa-java"></i>
+            <div class="skill-icon java">
+                <i class="fa-brands fa-java"></i>
+            </div>
 
-            <h3>Java</h3>
+            <h3>
+                Java
+            </h3>
 
             <p>
                 Programming • OOP
             </p>
 
+            <span class="skill-number">
+                08
+            </span>
+
         </div>
+
 
     </div>
 
@@ -505,24 +958,35 @@
 
 
 
-<!-- PROJECTS -->
+<!-- ==================================================
+     PROJECTS
+================================================== -->
 
-<section id="projects" class="section">
+<section id="projects"
+         class="section">
 
-    <div class="section-heading reveal">
+
+    <div class="section-label reveal">
 
         <span>03</span>
 
-        <h2>Featured Projects</h2>
+        SELECTED WORK
 
     </div>
 
 
-    <p class="section-subtitle reveal">
+    <div class="section-title-row reveal">
 
-        Things I've built while learning and experimenting.
+        <h2>
+            Things I've
+            <span>built.</span>
+        </h2>
 
-    </p>
+        <p>
+            From data dashboards to database systems.
+        </p>
+
+    </div>
 
 
     <div class="projects-grid">
@@ -530,49 +994,62 @@
 
         <!-- PROJECT 1 -->
 
-        <article class="project-card reveal">
+        <article class="project-card project-large reveal">
 
-            <div class="project-top">
 
-                <div class="project-icon">
+            <div class="project-number-big">
+                01
+            </div>
 
-                    <i class="fa-solid fa-train-subway"></i>
+
+            <div class="project-icon-big">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    DATA • AI • FORECASTING
+                </span>
+
+
+                <h3>
+                    Public Transit
+                    <span>
+                        Ridership Analytics
+                    </span>
+                </h3>
+
+
+                <p>
+
+                    An interactive analytics and forecasting platform
+                    designed to explore public transit ridership,
+                    passenger patterns, peak periods, revenue and
+                    future demand.
+
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>Python</span>
+
+                    <span>Streamlit</span>
+
+                    <span>Data Analysis</span>
+
+                    <span>Forecasting</span>
 
                 </div>
 
-
-                <span class="project-number">
-                    01
-                </span>
-
             </div>
 
 
-            <h3>
-                Public Transit Ridership Analytics
-            </h3>
-
-
-            <p>
-
-                An interactive analytics and forecasting dashboard
-                for exploring public transit ridership patterns,
-                peak periods, revenue and future demand.
-
-            </p>
-
-
-            <div class="tags">
-
-                <span>Python</span>
-
-                <span>Streamlit</span>
-
-                <span>Data Analysis</span>
-
-                <span>Forecasting</span>
-
-            </div>
+            <div class="project-glow"></div>
 
         </article>
 
@@ -582,47 +1059,59 @@
 
         <article class="project-card reveal">
 
-            <div class="project-top">
 
-                <div class="project-icon">
+            <div class="project-number-big">
+                02
+            </div>
 
-                    <i class="fa-solid fa-pills"></i>
+
+            <div class="project-icon-big">
+
+                <i class="fa-solid fa-pills"></i>
+
+            </div>
+
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    DATABASE • SQL
+                </span>
+
+
+                <h3>
+                    Pharmacy
+                    <span>
+                        Management System
+                    </span>
+                </h3>
+
+
+                <p>
+
+                    A structured database management system for
+                    organizing medicines, categories, suppliers,
+                    customers and sales.
+
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>MySQL</span>
+
+                    <span>SQL</span>
+
+                    <span>DBMS</span>
+
+                    <span>CRUD</span>
 
                 </div>
 
-
-                <span class="project-number">
-                    02
-                </span>
-
             </div>
 
 
-            <h3>
-                Pharmacy Management System
-            </h3>
-
-
-            <p>
-
-                A database management project designed to manage
-                medicines, categories, suppliers, customers and
-                sales using structured SQL operations.
-
-            </p>
-
-
-            <div class="tags">
-
-                <span>MySQL</span>
-
-                <span>SQL</span>
-
-                <span>DBMS</span>
-
-                <span>CRUD</span>
-
-            </div>
+            <div class="project-glow"></div>
 
         </article>
 
@@ -632,49 +1121,62 @@
 
         <article class="project-card reveal">
 
-            <div class="project-top">
 
-                <div class="project-icon">
+            <div class="project-number-big">
+                03
+            </div>
 
-                    <i class="fa-solid fa-code"></i>
+
+            <div class="project-icon-big">
+
+                <i class="fa-solid fa-code"></i>
+
+            </div>
+
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    PROGRAMMING • DSA
+                </span>
+
+
+                <h3>
+                    DSA &
+                    <span>
+                        Problem Solving
+                    </span>
+                </h3>
+
+
+                <p>
+
+                    A growing collection of algorithms and
+                    Data Structures implementations focused on
+                    strengthening programming fundamentals.
+
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>C++</span>
+
+                    <span>DSA</span>
+
+                    <span>Algorithms</span>
+
+                    <span>LeetCode</span>
 
                 </div>
 
-
-                <span class="project-number">
-                    03
-                </span>
-
             </div>
 
 
-            <h3>
-                DSA & Problem Solving
-            </h3>
-
-
-            <p>
-
-                A growing collection of Data Structures &
-                Algorithms implementations and problem-solving
-                practice focused on strong programming fundamentals.
-
-            </p>
-
-
-            <div class="tags">
-
-                <span>C++</span>
-
-                <span>DSA</span>
-
-                <span>Algorithms</span>
-
-                <span>LeetCode</span>
-
-            </div>
+            <div class="project-glow"></div>
 
         </article>
+
 
     </div>
 
@@ -682,49 +1184,60 @@
 
 
 
-<!-- CURRENTLY LEARNING -->
+<!-- ==================================================
+     LEARNING BANNER
+================================================== -->
 
-<section class="learning-section">
+<section class="learning-banner">
+
+
+    <div class="learning-orb"></div>
+
 
     <div class="learning-content reveal">
 
-        <span class="learning-label">
+
+        <span class="tiny-label">
             CURRENTLY LEARNING
         </span>
 
 
         <h2>
 
-            Building today.
-            <span>Preparing for tomorrow.</span>
+            Learning isn't a phase.
+
+            <span>
+                It's the process.
+            </span>
 
         </h2>
 
 
         <p>
 
-            I'm continuously improving my technical foundation through
-            projects, problem solving, Microsoft Learn and hands-on
-            experimentation.
+            Currently exploring AI/ML, Data Structures,
+            Python, cloud technologies and software development
+            through projects and continuous practice.
 
         </p>
 
 
-        <div class="learning-tags">
+        <div class="learning-pills">
 
             <span>AI / ML</span>
 
-            <span>DSA</span>
-
             <span>Python</span>
+
+            <span>DSA</span>
 
             <span>Cloud</span>
 
             <span>Data</span>
 
-            <span>Software Development</span>
+            <span>Software</span>
 
         </div>
+
 
     </div>
 
@@ -732,54 +1245,79 @@
 
 
 
-<!-- EDUCATION -->
+<!-- ==================================================
+     EDUCATION
+================================================== -->
 
-<section id="education" class="section">
+<section id="education"
+         class="section">
 
-    <div class="section-heading reveal">
+
+    <div class="section-label reveal">
 
         <span>04</span>
 
-        <h2>Education</h2>
+        EDUCATION
 
     </div>
 
 
-    <div class="timeline">
-
-        <div class="timeline-item reveal">
-
-            <div class="timeline-dot"></div>
+    <div class="education-card reveal">
 
 
-            <div class="timeline-content">
+        <div class="education-year">
 
+            2025
+
+            <span>
+                —
+            </span>
+
+            2029
+
+        </div>
+
+
+        <div class="education-line"></div>
+
+
+        <div class="education-info">
+
+            <span class="education-type">
+                BACHELOR'S DEGREE
+            </span>
+
+
+            <h2>
+
+                B.Tech —
                 <span>
-                    2025 — 2029
+                    Artificial Intelligence
+                    & Machine Learning
                 </span>
 
-
-                <h3>
-
-                    B.Tech — Artificial Intelligence
-                    & Machine Learning
-
-                </h3>
+            </h2>
 
 
-                <h4>
-                    Chandigarh University
-                </h4>
+            <h3>
+                Chandigarh University
+            </h3>
 
 
-                <p>
+            <p>
 
-                    Building foundations in programming, mathematics,
-                    databases, data structures, AI/ML and software development.
+                Exploring programming, mathematics, databases,
+                Data Structures & Algorithms, Artificial Intelligence,
+                Machine Learning and software development.
 
-                </p>
+            </p>
 
-            </div>
+        </div>
+
+
+        <div class="education-icon">
+
+            <i class="fa-solid fa-graduation-cap"></i>
 
         </div>
 
@@ -789,23 +1327,30 @@
 
 
 
-<!-- MICROSOFT LEARN -->
+<!-- ==================================================
+     MICROSOFT LEARN
+================================================== -->
 
 <section class="microsoft-section">
 
+
     <div class="microsoft-card reveal">
 
-        <div class="microsoft-logo">
 
-            <i class="fa-brands fa-microsoft"></i>
+        <div class="ms-icon">
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
 
         </div>
 
 
-        <div class="microsoft-content">
+        <div class="ms-content">
 
-            <span>
-                LEARNING & COMMUNITY
+            <span class="tiny-label">
+                LEARNING PROFILE
             </span>
 
 
@@ -816,21 +1361,31 @@
 
             <p>
 
-                Exploring Microsoft technologies and continuously
-                building my technical knowledge through Microsoft Learn.
+                Building technical knowledge through
+                Microsoft Learn and exploring modern
+                technology ecosystems.
 
             </p>
 
 
             <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
                target="_blank"
-               class="primary-btn">
+               class="btn btn-primary">
 
-                View Microsoft Learn Profile
+                View My Profile
 
-                <i class="fa-solid fa-arrow-right"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
             </a>
+
+        </div>
+
+
+        <div class="ms-decoration">
+
+            <span></span>
+            <span></span>
+            <span></span>
 
         </div>
 
@@ -840,30 +1395,41 @@
 
 
 
-<!-- CONTACT -->
+<!-- ==================================================
+     CONTACT
+================================================== -->
 
-<section id="contact" class="contact section">
+<section id="contact"
+         class="contact-section">
+
+
+    <div class="contact-glow"></div>
+
 
     <div class="contact-content reveal">
 
-        <span>
-            05 — CONTACT
+
+        <span class="tiny-label">
+            05 — LET'S CONNECT
         </span>
 
 
         <h2>
 
-            Let's build something
-            <span>interesting.</span>
+            Have an idea?
+
+            <span>
+                Let's build.
+            </span>
 
         </h2>
 
 
         <p>
 
-            I'm always open to learning, collaborating on projects,
-            connecting with fellow students and exploring opportunities
-            in technology.
+            I'm always open to learning, collaborating,
+            building projects and connecting with people
+            who are passionate about technology.
 
         </p>
 
@@ -873,7 +1439,7 @@
 
             <a href="https://www.linkedin.com/in/parisha-79a006377"
                target="_blank"
-               class="primary-btn">
+               class="btn btn-primary magnetic">
 
                 <i class="fa-brands fa-linkedin"></i>
 
@@ -884,7 +1450,7 @@
 
             <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
                target="_blank"
-               class="secondary-btn">
+               class="btn btn-glass magnetic">
 
                 <i class="fa-brands fa-microsoft"></i>
 
@@ -900,52 +1466,74 @@
 
 
 
-<!-- FOOTER -->
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer>
 
-    <div class="footer-logo">
 
-        &lt;Parisha/&gt;
-
-    </div>
+    <div class="footer-main">
 
 
-    <p>
-        Designed & built with curiosity.
-    </p>
+        <a href="#home"
+           class="logo">
 
-
-    <div class="footer-socials">
-
-        <a href="https://www.linkedin.com/in/parisha-79a006377"
-           target="_blank">
-
-            <i class="fa-brands fa-linkedin"></i>
+            <span>&lt;</span>
+            Parisha
+            <span>/&gt;</span>
 
         </a>
 
 
-        <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
-           target="_blank">
+        <p>
+            Built with curiosity & code.
+        </p>
 
-            <i class="fa-brands fa-microsoft"></i>
 
-        </a>
+        <div class="footer-links">
+
+
+            <a href="https://www.linkedin.com/in/parisha-79a006377"
+               target="_blank">
+
+                <i class="fa-brands fa-linkedin-in"></i>
+
+            </a>
+
+
+            <a href="https://learn.microsoft.com/en-us/users/PARISHA-9437"
+               target="_blank">
+
+                <i class="fa-brands fa-microsoft"></i>
+
+            </a>
+
+
+        </div>
 
     </div>
 
 
-    <p class="copyright">
+    <div class="footer-bottom">
 
-        © 2026 Parisha. All rights reserved.
+        <span>
+            © 2026 Parisha
+        </span>
 
-    </p>
+        <span>
+            Designed & built from scratch.
+        </span>
+
+    </div>
+
 
 </footer>
+
 
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
