@@ -1,32 +1,56 @@
-// =====================================
-// TYPING ANIMATION
-// =====================================
+/* ==================================================
+   LOADER
+================================================== */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document
+            .getElementById("loader")
+            .classList
+            .add("hide");
+
+    }, 900);
+
+});
+
+
+
+/* ==================================================
+   TYPING EFFECT
+================================================== */
 
 const words = [
-    "AI solutions.",
-    "data-driven projects.",
-    "software projects.",
-    "and my skills."
+
+    "AI & ML learner.",
+    "problem solver.",
+    "developer.",
+    "data explorer.",
+    "curious builder."
+
 ];
 
 let wordIndex = 0;
+
 let charIndex = 0;
+
 let deleting = false;
 
-const typingElement =
+const typing =
     document.querySelector(".typing");
 
 
-function typeEffect() {
+function typeWriter() {
 
-    const currentWord =
+    const word =
         words[wordIndex];
 
 
     if (!deleting) {
 
-        typingElement.textContent =
-            currentWord.substring(
+        typing.textContent =
+            word.substring(
                 0,
                 charIndex + 1
             );
@@ -36,25 +60,23 @@ function typeEffect() {
 
         if (
             charIndex ===
-            currentWord.length
+            word.length
         ) {
 
             deleting = true;
 
             setTimeout(
-                typeEffect,
-                1400
+                typeWriter,
+                1300
             );
 
             return;
         }
 
-    }
+    } else {
 
-    else {
-
-        typingElement.textContent =
-            currentWord.substring(
+        typing.textContent =
+            word.substring(
                 0,
                 charIndex - 1
             );
@@ -62,201 +84,500 @@ function typeEffect() {
         charIndex--;
 
 
-        if (charIndex === 0) {
+        if (
+            charIndex === 0
+        ) {
 
             deleting = false;
 
             wordIndex =
                 (wordIndex + 1)
                 % words.length;
+
         }
+
     }
 
 
     setTimeout(
 
-        typeEffect,
+        typeWriter,
 
         deleting
-            ? 45
+            ? 40
             : 80
+
     );
+
 }
 
 
-typeEffect();
+typeWriter();
 
 
 
-// =====================================
-// SCROLL REVEAL
-// =====================================
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
 
-const revealElements =
+const reveals =
     document.querySelectorAll(".reveal");
 
 
-function revealOnScroll() {
+const revealObserver =
+    new IntersectionObserver(
 
-    revealElements.forEach(
-        element => {
+        entries => {
 
-            const position =
-                element
-                .getBoundingClientRect()
-                .top;
+            entries.forEach(entry => {
 
+                if (
+                    entry.isIntersecting
+                ) {
 
-            const windowHeight =
-                window.innerHeight;
+                    entry.target
+                        .classList
+                        .add("active");
 
+                }
 
-            if (
-                position <
-                windowHeight - 80
-            ) {
+            });
 
-                element.classList
-                    .add("active");
+        },
 
-            }
-
+        {
+            threshold: .12
         }
+
     );
-}
 
 
-window.addEventListener(
-    "scroll",
-    revealOnScroll
+reveals.forEach(
+    element =>
+        revealObserver.observe(element)
 );
 
 
-revealOnScroll();
 
-
-
-// =====================================
-// NAVBAR SCROLL EFFECT
-// =====================================
-
-const header =
-    document.querySelector("header");
-
+/* ==================================================
+   SCROLL PROGRESS
+================================================== */
 
 window.addEventListener(
     "scroll",
     () => {
 
-        if (
-            window.scrollY > 50
-        ) {
+        const scrollTop =
+            window.scrollY;
 
-            header.style.background =
-                "rgba(7,7,12,.94)";
+        const pageHeight =
+            document.documentElement
+                .scrollHeight
+            -
+            window.innerHeight;
 
-        }
+        const progress =
+            (scrollTop / pageHeight)
+            * 100;
 
-        else {
 
-            header.style.background =
-                "rgba(7,7,12,.72)";
-        }
+        document
+            .querySelector(".scroll-progress")
+            .style.width =
+            progress + "%";
 
     }
 );
 
 
 
-// =====================================
-// SMOOTH NAVIGATION
-// =====================================
+/* ==================================================
+   CURSOR GLOW
+================================================== */
 
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            function(e) {
-
-                const target =
-                    document.querySelector(
-                        this.getAttribute(
-                            "href"
-                        )
-                    );
+const cursorGlow =
+    document.querySelector(".cursor-glow");
 
 
-                if (target) {
+window.addEventListener(
+    "mousemove",
+    event => {
 
-                    e.preventDefault();
+        cursorGlow.style.left =
+            event.clientX + "px";
 
+        cursorGlow.style.top =
+            event.clientY + "px";
 
-                    target.scrollIntoView({
-
-                        behavior:
-                            "smooth"
-
-                    });
-
-                }
-
-            }
-        );
-
-    });
+    }
+);
 
 
 
-// =====================================
-// 3D CARD TILT
-// =====================================
+/* ==================================================
+   MAGNETIC BUTTONS
+================================================== */
 
-const cards =
-    document.querySelectorAll(
-        ".project-card, .skill-card"
+const magneticButtons =
+    document.querySelectorAll(".magnetic");
+
+
+magneticButtons.forEach(button => {
+
+    button.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                button.getBoundingClientRect();
+
+
+            const x =
+                event.clientX
+                -
+                rect.left
+                -
+                rect.width / 2;
+
+
+            const y =
+                event.clientY
+                -
+                rect.top
+                -
+                rect.height / 2;
+
+
+            button.style.transform =
+                `
+                translate(
+                    ${x * .12}px,
+                    ${y * .12}px
+                )
+                `;
+
+        }
     );
 
 
-cards.forEach(card => {
+    button.addEventListener(
+        "mouseleave",
+        () => {
+
+            button.style.transform =
+                "translate(0,0)";
+
+        }
+    );
+
+});
+
+
+
+/* ==================================================
+   PARTICLE SYSTEM
+================================================== */
+
+const canvas =
+    document.getElementById(
+        "particles"
+    );
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let particles = [];
+
+
+function resizeCanvas() {
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+}
+
+
+resizeCanvas();
+
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+
+class Particle {
+
+    constructor() {
+
+        this.x =
+            Math.random()
+            *
+            canvas.width;
+
+        this.y =
+            Math.random()
+            *
+            canvas.height;
+
+        this.size =
+            Math.random()
+            * 1.8
+            + .4;
+
+        this.speedX =
+            (Math.random() - .5)
+            * .25;
+
+        this.speedY =
+            (Math.random() - .5)
+            * .25;
+
+        this.opacity =
+            Math.random()
+            * .5
+            + .1;
+
+    }
+
+
+    update() {
+
+        this.x +=
+            this.speedX;
+
+        this.y +=
+            this.speedY;
+
+
+        if (
+            this.x < 0 ||
+            this.x > canvas.width
+        ) {
+
+            this.speedX *= -1;
+
+        }
+
+
+        if (
+            this.y < 0 ||
+            this.y > canvas.height
+        ) {
+
+            this.speedY *= -1;
+
+        }
+
+    }
+
+
+    draw() {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(167,139,250,${this.opacity})`;
+
+        ctx.fill();
+
+    }
+
+}
+
+
+function createParticles() {
+
+    particles = [];
+
+    const amount =
+        window.innerWidth < 700
+            ? 45
+            : 90;
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        particles.push(
+            new Particle()
+        );
+
+    }
+
+}
+
+
+createParticles();
+
+
+
+function animateParticles() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    particles.forEach(
+        particle => {
+
+            particle.update();
+
+            particle.draw();
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        animateParticles
+    );
+
+}
+
+
+animateParticles();
+
+
+
+/* ==================================================
+   HERO CARD 3D TILT
+================================================== */
+
+const aiCard =
+    document.querySelector(".ai-card");
+
+
+if (aiCard) {
+
+    aiCard.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                aiCard.getBoundingClientRect();
+
+
+            const x =
+                event.clientX
+                -
+                rect.left;
+
+
+            const y =
+                event.clientY
+                -
+                rect.top;
+
+
+            const rotateX =
+                ((y - rect.height / 2)
+                /
+                (rect.height / 2))
+                * -5;
+
+
+            const rotateY =
+                ((x - rect.width / 2)
+                /
+                (rect.width / 2))
+                * 6;
+
+
+            aiCard.style.transform =
+                `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)
+                `;
+
+        }
+    );
+
+
+    aiCard.addEventListener(
+        "mouseleave",
+        () => {
+
+            aiCard.style.transform =
+                `
+                perspective(1000px)
+                rotateY(-6deg)
+                rotateX(2deg)
+                `;
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   SKILL CARD TILT
+================================================== */
+
+const skillCards =
+    document.querySelectorAll(
+        ".skill-card"
+    );
+
+
+skillCards.forEach(card => {
 
     card.addEventListener(
         "mousemove",
-        e => {
+        event => {
 
             const rect =
                 card.getBoundingClientRect();
 
 
             const x =
-                e.clientX -
+                event.clientX
+                -
                 rect.left;
 
 
             const y =
-                e.clientY -
+                event.clientY
+                -
                 rect.top;
 
 
-            const centerX =
-                rect.width / 2;
-
-
-            const centerY =
-                rect.height / 2;
-
-
             const rotateX =
-                ((y - centerY) /
-                centerY) * -3;
+                ((y - rect.height / 2)
+                /
+                rect.height)
+                * -5;
 
 
             const rotateY =
-                ((x - centerX) /
-                centerX) * 3;
+                ((x - rect.width / 2)
+                /
+                rect.width)
+                * 5;
 
 
             card.style.transform =
@@ -264,7 +585,7 @@ cards.forEach(card => {
                 perspective(700px)
                 rotateX(${rotateX}deg)
                 rotateY(${rotateY}deg)
-                translateY(-6px)
+                translateY(-8px)
                 `;
 
         }
@@ -276,14 +597,149 @@ cards.forEach(card => {
         () => {
 
             card.style.transform =
-                `
-                perspective(700px)
-                rotateX(0)
-                rotateY(0)
-                translateY(0)
-                `;
+                "translateY(0)";
 
         }
     );
 
 });
+
+
+
+/* ==================================================
+   PROJECT CARD TILT
+================================================== */
+
+const projectCards =
+    document.querySelectorAll(
+        ".project-card"
+    );
+
+
+projectCards.forEach(card => {
+
+    card.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                event.clientX
+                -
+                rect.left;
+
+
+            const y =
+                event.clientY
+                -
+                rect.top;
+
+
+            const rotateX =
+                ((y - rect.height / 2)
+                /
+                rect.height)
+                * -2;
+
+
+            const rotateY =
+                ((x - rect.width / 2)
+                /
+                rect.width)
+                * 2;
+
+
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-10px)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform =
+                "translateY(0)";
+
+        }
+    );
+
+});
+
+
+
+/* ==================================================
+   MOBILE MENU
+================================================== */
+
+const mobileMenu =
+    document.querySelector(
+        ".mobile-menu"
+    );
+
+const navLinks =
+    document.querySelector(
+        ".nav-links"
+    );
+
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        navLinks.classList.toggle(
+            "mobile-open"
+        );
+
+    }
+);
+
+
+
+/* ==================================================
+   SMOOTH NAV LINKS
+================================================== */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const target =
+                    document.querySelector(
+                        link.getAttribute(
+                            "href"
+                        )
+                    );
+
+
+                if (target) {
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior:
+                            "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
