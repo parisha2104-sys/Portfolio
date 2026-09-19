@@ -1,63 +1,289 @@
-// ===============================
-// Smooth navigation
-// ===============================
+// =====================================
+// TYPING ANIMATION
+// =====================================
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+const words = [
+    "AI solutions.",
+    "data-driven projects.",
+    "software projects.",
+    "and my skills."
+];
 
-    link.addEventListener("click", function (event) {
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-        const target = document.querySelector(this.getAttribute("href"));
+const typingElement =
+    document.querySelector(".typing");
 
-        if (target) {
 
-            event.preventDefault();
+function typeEffect() {
 
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
+    const currentWord =
+        words[wordIndex];
 
+
+    if (!deleting) {
+
+        typingElement.textContent =
+            currentWord.substring(
+                0,
+                charIndex + 1
+            );
+
+        charIndex++;
+
+
+        if (
+            charIndex ===
+            currentWord.length
+        ) {
+
+            deleting = true;
+
+            setTimeout(
+                typeEffect,
+                1400
+            );
+
+            return;
         }
 
-    });
+    }
 
-});
+    else {
+
+        typingElement.textContent =
+            currentWord.substring(
+                0,
+                charIndex - 1
+            );
+
+        charIndex--;
 
 
-// ===============================
-// Simple scroll reveal
-// ===============================
+        if (charIndex === 0) {
 
-const revealElements = document.querySelectorAll(
-    ".project-card, .skill-card, .learning-card, .highlight, .education-card"
-);
+            deleting = false;
 
-const observer = new IntersectionObserver(
-    entries => {
+            wordIndex =
+                (wordIndex + 1)
+                % words.length;
+        }
+    }
 
-        entries.forEach(entry => {
 
-            if (entry.isIntersecting) {
+    setTimeout(
 
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
+        typeEffect,
+
+        deleting
+            ? 45
+            : 80
+    );
+}
+
+
+typeEffect();
+
+
+
+// =====================================
+// SCROLL REVEAL
+// =====================================
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+function revealOnScroll() {
+
+    revealElements.forEach(
+        element => {
+
+            const position =
+                element
+                .getBoundingClientRect()
+                .top;
+
+
+            const windowHeight =
+                window.innerHeight;
+
+
+            if (
+                position <
+                windowHeight - 80
+            ) {
+
+                element.classList
+                    .add("active");
 
             }
 
-        });
+        }
+    );
+}
 
-    },
-    {
-        threshold: 0.1
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
+
+revealOnScroll();
+
+
+
+// =====================================
+// NAVBAR SCROLL EFFECT
+// =====================================
+
+const header =
+    document.querySelector("header");
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (
+            window.scrollY > 50
+        ) {
+
+            header.style.background =
+                "rgba(7,7,12,.94)";
+
+        }
+
+        else {
+
+            header.style.background =
+                "rgba(7,7,12,.72)";
+        }
+
     }
 );
 
 
-revealElements.forEach(element => {
 
-    element.style.opacity = "0";
-    element.style.transform = "translateY(25px)";
-    element.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+// =====================================
+// SMOOTH NAVIGATION
+// =====================================
 
-    observer.observe(element);
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function(e) {
+
+                const target =
+                    document.querySelector(
+                        this.getAttribute(
+                            "href"
+                        )
+                    );
+
+
+                if (target) {
+
+                    e.preventDefault();
+
+
+                    target.scrollIntoView({
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+// =====================================
+// 3D CARD TILT
+// =====================================
+
+const cards =
+    document.querySelectorAll(
+        ".project-card, .skill-card"
+    );
+
+
+cards.forEach(card => {
+
+    card.addEventListener(
+        "mousemove",
+        e => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                e.clientX -
+                rect.left;
+
+
+            const y =
+                e.clientY -
+                rect.top;
+
+
+            const centerX =
+                rect.width / 2;
+
+
+            const centerY =
+                rect.height / 2;
+
+
+            const rotateX =
+                ((y - centerY) /
+                centerY) * -3;
+
+
+            const rotateY =
+                ((x - centerX) /
+                centerX) * 3;
+
+
+            card.style.transform =
+                `
+                perspective(700px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-6px)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform =
+                `
+                perspective(700px)
+                rotateX(0)
+                rotateY(0)
+                translateY(0)
+                `;
+
+        }
+    );
 
 });
